@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "381323276944",
-    "firebase_url": "https://carproject-7daf0.firebaseio.com",
-    "project_id": "carproject-7daf0",
-    "storage_bucket": "carproject-7daf0.appspot.com"
+    "project_number": "873607944712",
+    "firebase_url": "https://odontovip-4bce7.firebaseio.com",
+    "project_id": "odontovip-4bce7",
+    "storage_bucket": "odontovip-4bce7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:381323276944:android:e25cdd50a21108db",
+        "mobilesdk_app_id": "1:873607944712:android:4b43fb6df53a2a6a",
         "android_client_info": {
-          "package_name": "com.example.logonpf.carros"
+          "package_name": "br.com.pkodontovip"
         }
       },
       "oauth_client": [
         {
-          "client_id": "381323276944-3n87f3apjq38gjrleqsi8kf9ouuc4n8o.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.logonpf.carros",
-            "certificate_hash": "6909afb0e7d43db374e14cc26acffe678150afab"
-          }
-        },
-        {
-          "client_id": "381323276944-jmu1r649bm1fpievbe8rhdket5eiljfa.apps.googleusercontent.com",
+          "client_id": "873607944712-mdtjlnmb8b5usi4e0pj44asola7rcgrf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDbs7GdnlRLFTrQw0QkqXmryPAxHYu4hiQ"
+          "current_key": "AIzaSyDrD7NdFbL6yDS5UWaa-f0tiL2ypBSdjwU"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "381323276944-jmu1r649bm1fpievbe8rhdket5eiljfa.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
