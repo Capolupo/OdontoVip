@@ -16,6 +16,7 @@ import android.widget.Toast
 import br.com.pkodontovip.api.RetrofitClient
 import br.com.pkodontovip.R
 import br.com.pkodontovip.api.PacienteAPI
+import br.com.pkodontovip.model.Global
 import br.com.pkodontovip.model.Paciente
 import kotlinx.android.synthetic.main.erro.*
 import kotlinx.android.synthetic.main.fragment_lista_pacientes.*
@@ -106,6 +107,7 @@ class ListaPacientesFragment : Fragment() {
     fun setupLista(pacientes: List<Paciente>?) {
         pacientes.let {
             rvCarros.adapter = ListaPacientesAdapter(pacientes!!, thisContext)
+            Global.listaDosPacientes = pacientes
             val layoutManager = LinearLayoutManager(context)
             rvCarros.layoutManager = layoutManager
         }

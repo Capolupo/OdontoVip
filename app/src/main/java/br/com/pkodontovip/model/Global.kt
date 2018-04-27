@@ -13,7 +13,7 @@ class Global {
         lateinit var clinicaRef : DatabaseReference
         lateinit var clinicaAtual : Paciente
         lateinit var mAuth : FirebaseAuth
-
+        lateinit var listaDosPacientes : List<Paciente>
 
         var RC_SIGN_IN = 123
         var providers = Arrays.asList(
