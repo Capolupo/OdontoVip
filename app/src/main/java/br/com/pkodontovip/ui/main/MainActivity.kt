@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_lista -> {
-                changeFragment(ListaCarrosFragment())
+                changeFragment(ListaPacientesFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_novo -> {
-                changeFragment(NovoCarroFragment())
+                changeFragment(NovoPacienteFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_sobre -> {
@@ -41,6 +41,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        changeFragment(ListaCarrosFragment())
+        changeFragment(ListaPacientesFragment())
     }
 }
