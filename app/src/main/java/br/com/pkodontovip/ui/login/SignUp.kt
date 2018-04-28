@@ -12,6 +12,10 @@ import br.com.pkodontovip.model.Global
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.widget.CheckBox
+
 
 class SignUp : AppCompatActivity() {
 
@@ -19,6 +23,7 @@ class SignUp : AppCompatActivity() {
     lateinit var senha : EditText
     lateinit var confSenha : EditText
     lateinit var cadastrar : Button
+    lateinit var ckManterConectado : CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,7 @@ class SignUp : AppCompatActivity() {
         senha = findViewById(R.id.signup_senha)
         confSenha = findViewById(R.id.signup_confsenha)
         cadastrar = findViewById(R.id.signup_cadastrar)
+
 
         cadastrar.setOnClickListener{ cadastrarClinica() }
     }

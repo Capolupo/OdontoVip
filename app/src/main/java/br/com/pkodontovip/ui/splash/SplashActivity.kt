@@ -9,6 +9,10 @@ import br.com.pkodontovip.R
 import br.com.pkodontovip.ui.login.LoginActivity
 import br.com.pkodontovip.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.widget.Toast
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,7 +21,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         carregar()
-
     }
 
     fun carregar() {
@@ -25,10 +28,18 @@ class SplashActivity : AppCompatActivity() {
                 R.anim.animacao_splash)
         ivLogoSplash.startAnimation(animacao)
 
-        Handler().postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            this.finish()
-        }, 3000)
 
+        val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
+        val ckchecado = pref.getBoolean("ckManterConectado", false)
+
+        if ( ckchecado == true ) {
+            Toast.makeText(this, "Você ira entrar direto! Para novologgin faça logoff", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, MainActivity::class.java))
+        }else {
+            Handler().postDelayed({
+                startActivity(Intent(this, LoginActivity::class.java))
+                this.finish()
+            }, 3000)
+        }
     }
 }

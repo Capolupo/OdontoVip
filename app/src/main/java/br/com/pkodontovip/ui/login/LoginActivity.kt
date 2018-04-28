@@ -33,6 +33,8 @@ import com.google.firebase.auth.AuthResult
 
 class LoginActivity : AppCompatActivity() {
 
+    lateinit var ckManterConectado : CheckBox
+
     lateinit var photo : ImageView;
     lateinit var email : EditText;
     lateinit var senha : EditText;
@@ -50,6 +52,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         context = this
         Global.mAuth = FirebaseAuth.getInstance();
+
+        ckManterConectado = findViewById(R.id.ckManterConectado)
 
         photo = findViewById(R.id.login_imagem)
         email = findViewById(R.id.login_email)
@@ -74,6 +78,18 @@ class LoginActivity : AppCompatActivity() {
             Global.mAuth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
                     .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                         if (task.isSuccessful) {
+
+                            val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
+                            val editor = pref.edit()
+                            if ( ckManterConectado.isChecked ) {
+                                editor.putBoolean("ckManterConectado", true);
+                                Toast.makeText(this, "Você ira entrar direto nas próximas! ", Toast.LENGTH_LONG).show()
+                            }else{
+                                editor.putBoolean("ckManterConectado", false);
+                                Toast.makeText(this, "Para não entrar direto caça logoff! ", Toast.LENGTH_LONG).show()
+                            }
+                            editor.commit()
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("FragmentActivity.TAG", "signInWithEmail:success")
                             val user = Global.mAuth.getCurrentUser()
@@ -114,13 +130,10 @@ class LoginActivity : AppCompatActivity() {
 
     fun configurarFirebase(){
         Global.configurarFirebase()
-//        val database = FirebaseDatabase.getInstance("https://carproject-7daf0.firebaseio.com/")
-//        myRef = database.getReference("Clinica")
         conectarAoFireBase()
     }
 
     fun conectarAoFireBase(){
-//        myRef.addValueEventListener(object : ValueEventListener {
             Global.clinicaRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.i("DataSnap", dataSnapshot.toString())
