@@ -1,9 +1,5 @@
 <resources>
-<<<<<<< HEAD
-    <string name="app_name">Clinicas6</string>
-=======
     <string name="app_name">OdontoVip</string>
->>>>>>> 83c895e2240473bfcf3867ec743a9313c6f4813c
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
