@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import br.com.pkodontovip.R
-import br.com.pkodontovip.Paciente
 import br.com.pkodontovip.model.Global
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -32,13 +31,22 @@ class SignUp : AppCompatActivity() {
 
         cadastrar.setOnClickListener{ cadastrarClinica() }
     }
-
+    fun camposVazil():Boolean{
+        if(email.text.isNullOrEmpty()||
+                senha.text.isNullOrEmpty()||
+                confSenha.text.isNullOrEmpty())
+            return true
+        else
+            return false
+    }
     fun cadastrarClinica(){
-        Global.mAuth.createUserWithEmailAndPassword(
-                email.text.toString(),
-                senha.text.toString())
-                .addOnCompleteListener(this, OnCompleteListener<AuthResult> {
-                    task ->
+        if (camposVazil())
+            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_LONG).show()
+        else {
+            Global.mAuth.createUserWithEmailAndPassword(
+                    email.text.toString(),
+                    senha.text.toString())
+                    .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("FragmentActivity.TAG", "createUserWithEmail:success")
@@ -53,6 +61,6 @@ class SignUp : AppCompatActivity() {
                             //updateUI(null)
                         }
                     })
-
+        }
     }
 }

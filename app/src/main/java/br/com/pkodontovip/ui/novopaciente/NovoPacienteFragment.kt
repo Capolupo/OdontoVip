@@ -24,7 +24,7 @@ class NovoPacienteFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_novo_paciente, container, false)    }
 
-    fun camposVaziu():Boolean{
+    fun camposVazil():Boolean{
         if(inputMarca.editText?.text.isNullOrEmpty()||
         inputModelo.editText?.text.isNullOrEmpty()||
         inputAno.editText?.text.isNullOrEmpty()||
@@ -37,7 +37,7 @@ class NovoPacienteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btSalvar.setOnClickListener {
-            if (!camposVaziu()) {
+            if (!camposVazil()) {
                 val api = RetrofitClient
                         .getInstance()
                         .create(PacienteAPI::class.java)

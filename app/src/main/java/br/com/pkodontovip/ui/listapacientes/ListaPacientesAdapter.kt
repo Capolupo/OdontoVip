@@ -18,6 +18,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.item_paciente.view.*
 import kotlin.coroutines.experimental.coroutineContext
+import android.R.attr.fragment
+import android.support.v4.app.FragmentActivity
+import android.util.Log
+
 
 /**
  * Created by Andre on 25/04/2018.
@@ -27,7 +31,7 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
 
     override fun onBindViewHolder(holder: MeuViewHolder, position: Int) {
         val paciente = pacientes[position]
-        holder?.let { it.bindView(paciente) }
+        holder?.let { it.bindView(paciente, context) }
     }
 
     override fun getItemCount(): Int {
@@ -39,8 +43,10 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
         return  MeuViewHolder(view)
     }
 
+
     class MeuViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        fun bindView(paciente:Paciente) {
+
+        fun bindView(paciente:Paciente, thisContext: Context) {
             itemView.findViewById<TextView>(R.id.tvMarca).text = paciente.nome
             itemView.findViewById<TextView>(R.id.tvModelo).text = paciente.descricao
             if(paciente.urlImagem.isNullOrEmpty()){
@@ -56,11 +62,23 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
                         .into(itemView.findViewById<ImageView>(R.id.ivFoto));
             }
 
-            val buttonLongClickListener = { v: View ->
+            fun abrirEditar()
+            {
 
+                (thisContext as FragmentActivity).supportFragmentManager.beginTransaction()
+                        .replace(R.id.containerFragment, EditPacienteFragment().targetFragment)
+                        .commit()
+            }
+
+            val buttonLongClickListener = { v: View ->
+                abrirEditar()
                 true
             }
-            itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener(buttonLongClickListener)
+            try {
+                itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener(buttonLongClickListener)
+            }catch (e : Exception){
+                Log.e("Error",e.toString())
+            }
         }
     }
 }

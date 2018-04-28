@@ -111,7 +111,6 @@ class ListaPacientesFragment : Fragment() {
             val layoutManager = LinearLayoutManager(context)
             rvCarros.layoutManager = layoutManager
         }
-
     }
 }
 

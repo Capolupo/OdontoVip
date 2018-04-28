@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/item_cliable"
         android:layout_margin="35dp"
-        android:background="@drawable/bk_edittext_rounded"
+        android:background="@drawable/bk_itempaicente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

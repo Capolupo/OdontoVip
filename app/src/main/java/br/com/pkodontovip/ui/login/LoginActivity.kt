@@ -126,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.i("DataSnap", dataSnapshot.toString())
                 if (dataSnapshot.value.toString() != "null"){
                     val clinicaFire = dataSnapshot.child("Clinica").getValue(Paciente::class.java);
-                    clinicaCar = clinicaFire ?: Paciente("0","",1,"","",0)
+                    clinicaCar = clinicaFire ?: Paciente("0","",1,"","")
                 }else {
 //                    clinicaCar = Carro("0","marca","modelo",1,"placa","url",0)
 //                    myRef.child("teste").setValue(clinicaCar)
@@ -149,7 +149,7 @@ class LoginActivity : AppCompatActivity() {
                     if(dataSnapshot.hasChild(emailCoded)){
                         if(dataSnapshot.child(emailCoded).child("modelo").getValue().toString().equals(senha.text.toString())) {
                             val clinicaFire = dataSnapshot.child(emailCoded ?: "").getValue(Paciente::class.java)
-                            Global.clinicaAtual = clinicaFire ?: Paciente("0", "",  1, "", "", 0)
+                            Global.clinicaAtual = clinicaFire ?: Paciente("0", "",  1, "", "")
                             startActivity(Intent(context, MainActivity::class.java))
                         }else
                             Toast.makeText(context,
