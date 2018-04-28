@@ -20,9 +20,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:hint="Modelo do veículo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do Paciente" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -32,9 +32,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:hint="Marca do veículo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Idade do Paciente" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -44,10 +44,10 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="Ano de fabricação"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Descrição do Paciente"
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -57,9 +57,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:hint="Placa do veículo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Foto do Paciente" />
 
             </android.support.design.widget.TextInputLayout>
 
