@@ -143,7 +143,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.i("DataSnap", dataSnapshot.toString())
                 if (dataSnapshot.value.toString() != "null"){
-                    val emailCoded : String = Global.stringToHex(email.text.toString())
+                    val emailCoded : String = Global.emailToValidChar(email.text.toString())
                     if(dataSnapshot.hasChild(emailCoded)){
                         if(dataSnapshot.child(emailCoded).child("modelo").getValue().toString().equals(senha.text.toString())) {
                             val clinicaFire = dataSnapshot.child(emailCoded ?: "").getValue(Clinica::class.java)

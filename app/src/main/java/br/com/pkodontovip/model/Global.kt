@@ -33,9 +33,23 @@ class Global {
             database = FirebaseDatabase.getInstance("https://carproject-7daf0.firebaseio.com/")
             clinicaRef = database.getReference("Clinica")
         }
-        fun stringToHex(string: String):String{
-            val data = Hex.stringToBytes(string)
-            return Hex.bytesToStringLowercase(data)
+        fun emailToValidChar(string: String):String{
+            val stringRetorno : String  = string.
+                    replace(".","(2e)").
+                    replace("#","(23)").
+                    replace("$","(24)").
+                    replace("[","(5b)").
+                    replace("]","(5d)")
+            return stringRetorno
+        }
+        fun validCharToEmail(string: String):String{
+            val stringRetorno : String  = string.
+                    replace("(2e)",".").
+                    replace("(23)","#").
+                    replace("(24)","$").
+                    replace("(5b)","[").
+                    replace("(5d)","]")
+            return stringRetorno
         }
     }
 }

@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import br.com.pkodontovip.R
 import br.com.pkodontovip.model.Global
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import android.R.id.edit
 import android.content.SharedPreferences
-import android.widget.CheckBox
+import android.support.design.internal.NavigationMenu
+import android.view.MenuItem
+import android.widget.*
 import br.com.pkodontovip.model.Clinica
 import br.com.pkodontovip.model.Paciente
 
@@ -35,9 +34,16 @@ class SignUp : AppCompatActivity() {
         confSenha = findViewById(R.id.signup_confsenha)
         cadastrar = findViewById(R.id.signup_cadastrar)
 
+        this.getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
         cadastrar.setOnClickListener{ cadastrarClinica() }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        finish()
+        return super.onOptionsItemSelected(item)
+    }
+
     fun camposVazil():Boolean{
         if(email.text.isNullOrEmpty()||
                 senha.text.isNullOrEmpty()||
@@ -53,7 +59,8 @@ class SignUp : AppCompatActivity() {
             try {
                     val clinica = Clinica(0, email.text.toString(), senha.text.toString(), "")
 
-                    Global.clinicaRef.child(email.text.toString().replace(".","2e")).setValue(clinica)
+                    Log.i("validEmail",Global.emailToValidChar(email.text.toString()))
+                    Global.clinicaRef.child(Global.emailToValidChar(email.text.toString())).setValue(clinica)
 
                 }catch (e: Exception) {
 
