@@ -11,10 +11,11 @@ import br.com.pkodontovip.R
 import br.com.pkodontovip.model.Global
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import android.R.id.edit
 import android.content.SharedPreferences
 import android.widget.CheckBox
+import br.com.pkodontovip.model.Clinica
+import br.com.pkodontovip.model.Paciente
 
 
 class SignUp : AppCompatActivity() {
@@ -49,24 +50,39 @@ class SignUp : AppCompatActivity() {
         if (camposVazil())
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_LONG).show()
         else {
-            Global.mAuth.createUserWithEmailAndPassword(
-                    email.text.toString(),
-                    senha.text.toString())
-                    .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("FragmentActivity.TAG", "createUserWithEmail:success")
-                            val user = Global.mAuth.currentUser
-                            finish()
-                            //updateUI(user)
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("FragmentActivity.TAG", "createUserWithEmail:failure", task.exception)
-                            Toast.makeText(this, "A senha precisa ter 6 ou mais caracteres",
-                                    Toast.LENGTH_SHORT).show()
-                            //updateUI(null)
-                        }
-                    })
+            try {
+                    val clinica = Clinica(0, email.text.toString(), senha.text.toString(), "")
+
+                    Global.clinicaRef.child(email.text.toString().replace(".","2e")).setValue(clinica)
+
+                }catch (e: Exception) {
+
+                    Log.e("ErroFirebase", e.toString())
+
+                }
+
+
+
+
+
+//            Global.mAuth.createUserWithEmailAndPassword(
+//                    email.text.toString(),
+//                    senha.text.toString())
+//                    .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
+//                        if (task.isSuccessful) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d("FragmentActivity.TAG", "createUserWithEmail:success")
+//                            val user = Global.mAuth.currentUser
+//                            finish()
+//                            //updateUI(user)
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w("FragmentActivity.TAG", "createUserWithEmail:failure", task.exception)
+//                            Toast.makeText(this, "A senha precisa ter 6 ou mais caracteres",
+//                                    Toast.LENGTH_SHORT).show()
+//                            //updateUI(null)
+//                        }
+//                    })
         }
     }
 }

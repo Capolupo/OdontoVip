@@ -21,6 +21,7 @@ import kotlin.coroutines.experimental.coroutineContext
 import android.R.attr.fragment
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.widget.Toast
 
 
 /**
@@ -61,24 +62,21 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
                         .error(R.drawable.cancel)
                         .into(itemView.findViewById<ImageView>(R.id.ivFoto));
             }
+                itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener{v:View ->
+                    abrirEditar(thisContext)
+                    true
+                }
+        }
 
-            fun abrirEditar()
-            {
-
-                (thisContext as FragmentActivity).supportFragmentManager.beginTransaction()
-                        .replace(R.id.containerFragment, EditPacienteFragment().targetFragment)
-                        .commit()
-            }
-
-            val buttonLongClickListener = { v: View ->
-                abrirEditar()
-                true
-            }
-            try {
-                itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener(buttonLongClickListener)
-            }catch (e : Exception){
-                Log.e("Error",e.toString())
-            }
+        fun abrirEditar(hereContext: Context)
+        {
+try {
+    (hereContext as FragmentActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.containerFragment, EditPacienteFragment())
+            .commit()
+}catch (e:Exception){
+    Log.e("Error", e.toString())
+}
         }
     }
 }
