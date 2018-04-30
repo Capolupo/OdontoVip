@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
                 changeFragment(NovoPacienteFragment())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_sobre -> {
+            R.id.navigation_sair -> {
                 val alertDialog=AlertDialog.Builder(this)
-                alertDialog.setMessage("Deseja sair do aplicativo.").
+                alertDialog.setMessage("Deseja sair do aplicativo? Desativa opção Manter Conectado!").
                         setPositiveButton("Sim", DialogInterface.OnClickListener{dialog: DialogInterface?, which: Int ->
                             val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
                             val editor = pref.edit()

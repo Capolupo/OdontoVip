@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginFirebase(){
         if (email.text.toString().isNullOrEmpty() || senha.text.toString().isNullOrEmpty()){
-            Toast.makeText(context, "Campo e-mail e senha não podem ser vaziu.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Campo e-mail e senha não podem ser vazio.", Toast.LENGTH_LONG).show()
         }
         else{
 
@@ -162,7 +162,7 @@ try {
                                 Toast.makeText(context, "Você ira entrar direto nas próximas! ", Toast.LENGTH_LONG).show()
                             }else{
                                 editor.putBoolean("ckManterConectado", false);
-                                Toast.makeText(context, "Para não entrar direto caça logoff! ", Toast.LENGTH_LONG).show()
+                                Toast.makeText(context, "Para não entrar direto faça logoff! ", Toast.LENGTH_LONG).show()
                             }
                             editor.commit()
 

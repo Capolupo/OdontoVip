@@ -18,7 +18,7 @@
 
     <!-- Style to replace actionbar overflow icon. set item 'android:actionOverflowButtonStyle' in AppTheme -->
     <style name="option_menu_sobre" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/icon</item>
+        <item name="android:src">@drawable/iconsobre</item>
     </style>
 
 </resources>

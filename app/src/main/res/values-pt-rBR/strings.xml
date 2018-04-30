@@ -11,4 +11,5 @@
     <string name="novo_paciente">Novo Paciente</string>
     <string name="visit_debugandroid">Visit DebugAndroid</string>
     <string name="sobre">Sobre</string>
+    <string name="Sair">Sair</string>
 </resources>
