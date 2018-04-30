@@ -7,7 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Acesso</string>
 
     <string name="facebook_application_id" translatable="false">202526173679603</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb202526173679603</string>
@@ -15,5 +15,7 @@
     <string name="twitter_consumer_secret" translatable="false">kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw</string>
     <string name="aqui_est_a_mensagem_de_erro">Aqui está a mensagem de erro</string>
     <string name="erroooooou">Erroooooou</string>
-    <string name="estamos_carregando">ESTAMOS CARREGANDO...</string>
+    <string name="estamos_carregando">Carregando</string>
+    <string name="ver_pacientes">Ver Pacientes</string>
+    <string name="novo_paciente">Novo Paciente</string>
 </resources>

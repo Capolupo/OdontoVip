@@ -4,12 +4,12 @@
     <item
         android:id="@+id/navigation_lista"
         android:icon="@drawable/pacients"
-        android:title="Ver Pacientes" />
+        android:title="@string/ver_pacientes" />
 
     <item
         android:id="@+id/navigation_novo"
         android:icon="@drawable/newpacient"
-        android:title="Novo Paciente" />
+        android:title="@string/novo_paciente" />
 
     <item
         android:id="@+id/navigation_sobre"

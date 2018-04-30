@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OdontoVip</string>
+    <string name="title_activity_main">Tela Principal</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_notifications">Notificações</string>
+    <string name="title_activity_login">Acesso</string>
+    <string name="estamos_carregando">Carregando</string>
+    <string name="title_dashboard">Painel de Controle</string>
+    <string name="ver_pacientes">Ver Pacientes</string>
+    <string name="novo_paciente">Novo Paciente</string>
+</resources>

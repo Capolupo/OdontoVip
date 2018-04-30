@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OdontoVip</string>
+    <string name="title_activity_login">Login</string>
+    <string name="estamos_carregando">Loading</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="ver_pacientes">Pacients</string>
+    <string name="novo_paciente">New Pacient</string>
+</resources>
