@@ -11,7 +11,11 @@ import br.com.pkodontovip.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import android.R.id.edit
 import android.content.SharedPreferences
+import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
+import br.com.pkodontovip.model.Global
+import br.com.pkodontovip.model.Global.Companion.pref
 
 
 class SplashActivity : AppCompatActivity() {
@@ -19,7 +23,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        Global.configurarFirebase()
+        Global.pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
         carregar()
     }
 
@@ -29,8 +34,9 @@ class SplashActivity : AppCompatActivity() {
         ivLogoSplash.startAnimation(animacao)
 
 
-        val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
         val ckchecado = pref.getBoolean("ckManterConectado", false)
+
+        Log.i("manter conectado", ckchecado.toString())
 
         if ( ckchecado == true ) {
             Toast.makeText(this, "Você ira entrar direto! Para novologgin faça logoff", Toast.LENGTH_LONG).show()

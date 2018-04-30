@@ -9,4 +9,6 @@
     <string name="title_dashboard">Painel de Controle</string>
     <string name="ver_pacientes">Ver Pacientes</string>
     <string name="novo_paciente">Novo Paciente</string>
+    <string name="visit_debugandroid">Visit DebugAndroid</string>
+    <string name="sobre">Sobre</string>
 </resources>

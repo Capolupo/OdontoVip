@@ -1,34 +1,18 @@
 package br.com.pkodontovip.ui.login
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.provider.Settings
-import android.support.annotation.MainThread
 import android.support.v7.app.AppCompatActivity
-import br.com.pkodontovip.BuildConfig
 import br.com.pkodontovip.R
 import br.com.pkodontovip.ui.main.MainActivity
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.android.gms.tasks.Task
-import android.support.annotation.NonNull
-import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.widget.*
 import br.com.pkodontovip.model.Paciente
 import br.com.pkodontovip.model.Global
-import br.com.pkodontovip.model.Global.Companion.RC_SIGN_IN
-import br.com.pkodontovip.model.Global.Companion.providers
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.auth.FirebaseUser
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import br.com.pkodontovip.model.Clinica
 
 
 class LoginActivity : AppCompatActivity() {
@@ -51,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         context = this
-        Global.mAuth = FirebaseAuth.getInstance();
+//        Global.mAuth = FirebaseAuth.getInstance();
 
         ckManterConectado = findViewById(R.id.ckManterConectado)
 
@@ -62,50 +46,51 @@ class LoginActivity : AppCompatActivity() {
         cadastre = findViewById(R.id.login_cadastrar)
         cadastre.setOnClickListener { cadastrar() }
 
-        entrar.setOnClickListener { loginFirebase() }
+        entrar.setOnClickListener { entrar() }
 
-        configurarFirebase()
-        //loginFirebase()
     }
 
     fun loginFirebase(){
-        //val currentUser = Global.mAuth.currentUser
-        //updateUI(currentUser)
         if (email.text.toString().isNullOrEmpty() || senha.text.toString().isNullOrEmpty()){
             Toast.makeText(context, "Campo e-mail e senha não podem ser vaziu.", Toast.LENGTH_LONG).show()
         }
         else{
-            Global.mAuth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
-                    .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
-                        if (task.isSuccessful) {
 
-                            val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
-                            val editor = pref.edit()
-                            if ( ckManterConectado.isChecked ) {
-                                editor.putBoolean("ckManterConectado", true);
-                                Toast.makeText(this, "Você ira entrar direto nas próximas! ", Toast.LENGTH_LONG).show()
-                            }else{
-                                editor.putBoolean("ckManterConectado", false);
-                                Toast.makeText(this, "Para não entrar direto caça logoff! ", Toast.LENGTH_LONG).show()
-                            }
-                            editor.commit()
+//            Global.mAuth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
+//                    .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
+//                        if (task.isSuccessful) {
+//
+//                            val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
+//                            val editor = pref.edit()
+//                            if ( ckManterConectado.isChecked ) {
+//                                editor.putBoolean("ckManterConectado", true);
+//                                Toast.makeText(this, "Você ira entrar direto nas próximas! ", Toast.LENGTH_LONG).show()
+//                            }else{
+//                                editor.putBoolean("ckManterConectado", false);
+//                                Toast.makeText(this, "Para não entrar direto caça logoff! ", Toast.LENGTH_LONG).show()
+//                            }
+//                            editor.apply()
+//
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d("FragmentActivity.TAG", "signInWithEmail:success")
+//                            val user = Global.mAuth.getCurrentUser()
+//
+//                            Global.pref.edit().putString(Global.emailSharedPreference, email.text.toString())
+//
+//                            startActivity(Intent(context, MainActivity::class.java))
+//
+//                            //updateUI(user)
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w("FragmentActivity.TAG", "signInWithEmail:failure", task.exception)
+//                            Toast.makeText(context, task.exception?.localizedMessage,
+//                                    Toast.LENGTH_SHORT).show()
+//                            //updateUI(null)
+//                        }
+//
+//                        // ...
+//                    })
 
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("FragmentActivity.TAG", "signInWithEmail:success")
-                            val user = Global.mAuth.getCurrentUser()
-                            startActivity(Intent(context, MainActivity::class.java))
-
-                            //updateUI(user)
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("FragmentActivity.TAG", "signInWithEmail:failure", task.exception)
-                            Toast.makeText(context, task.exception?.localizedMessage,
-                                    Toast.LENGTH_SHORT).show()
-                            //updateUI(null)
-                        }
-
-                        // ...
-                    })
         }
 
     }
@@ -113,24 +98,24 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-
-            if (resultCode == Activity.RESULT_OK) {
-                // Successfully signed in
-                val user = FirebaseAuth.getInstance().getCurrentUser()
-
-                // ...
-            } else {
-                // Sign in failed, check response for error code
-                // ...
-            }
-        }
+//        if (requestCode == RC_SIGN_IN) {
+//            val response = IdpResponse.fromResultIntent(data)
+//
+//            if (resultCode == Activity.RESULT_OK) {
+//                // Successfully signed in
+//                val user = FirebaseAuth.getInstance().getCurrentUser()
+//
+//                // ...
+//            } else {
+//                // Sign in failed, check response for error code
+//                // ...
+//            }
+//        }
     }
 
     fun configurarFirebase(){
         Global.configurarFirebase()
-        conectarAoFireBase()
+        //conectarAoFireBase()
     }
 
     fun conectarAoFireBase(){
@@ -158,12 +143,34 @@ class LoginActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.i("DataSnap", dataSnapshot.toString())
                 if (dataSnapshot.value.toString() != "null"){
-                    val emailCoded : String = email.text.toString().replace(".","2e")
+                    val emailCoded : String = Global.emailToValidChar(email.text.toString())
                     if(dataSnapshot.hasChild(emailCoded)){
-                        if(dataSnapshot.child(emailCoded).child("modelo").getValue().toString().equals(senha.text.toString())) {
-                            val clinicaFire = dataSnapshot.child(emailCoded ?: "").getValue(Paciente::class.java)
-                            Global.clinicaAtual = clinicaFire ?: Paciente("0", "",  1, "", "")
-                            startActivity(Intent(context, MainActivity::class.java))
+                        if(dataSnapshot.child(emailCoded).child("senha").getValue().toString().equals(senha.text.toString())) {
+try {
+
+                            val clinicaFire : Clinica
+                            val dataSnapshotvar = dataSnapshot.child(emailCoded ?: "")
+
+                            clinicaFire = dataSnapshotvar.getValue<Clinica>(Clinica::class.java)?: Clinica(0, "",  "", "")
+                            Global.clinicaAtual = clinicaFire ?: Clinica(0, "",  "", "")
+
+                            //Salva Preferencias de Manter conectado
+                            val pref = applicationContext.getSharedPreferences("MinhasPreferencias", MODE_PRIVATE)
+                            val editor = pref.edit()
+                            if ( ckManterConectado.isChecked ) {
+                                editor.putBoolean("ckManterConectado", true);
+                                Toast.makeText(context, "Você ira entrar direto nas próximas! ", Toast.LENGTH_LONG).show()
+                            }else{
+                                editor.putBoolean("ckManterConectado", false);
+                                Toast.makeText(context, "Para não entrar direto caça logoff! ", Toast.LENGTH_LONG).show()
+                            }
+                            editor.commit()
+
+    startActivity(Intent(context, MainActivity::class.java))
+    finish()
+}catch (e:Exception){
+    Log.e("Error", e.toString())
+}
                         }else
                             Toast.makeText(context,
                                     "Senha não confere.",
@@ -174,6 +181,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG).show()
                     }
                 }else {
+                    Toast.makeText(context, "e-mail não confere", Toast.LENGTH_LONG).show()
 //                    clinicaCar = Carro("0","marca","modelo",1,"placa","url",0)
 //                    myRef.child("teste").setValue(clinicaCar)
                 }
