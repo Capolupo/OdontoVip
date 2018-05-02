@@ -9,7 +9,7 @@
     <string name="visit_debugandroid">Visit DebugAndroid</string>
     <string name="sobre">About</string>
     <string name="Sair">Exit</string>
-    <string name="name">Nome</string>
-    <string name="age">idade</string>
-    <string name="optional">descrição</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="optional">Optional</string>
 </resources>
