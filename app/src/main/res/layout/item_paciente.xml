@@ -39,6 +39,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvMarca"
                 tools:text="Marca"/>
+            <Button
+                android:id="@+id/itemPaciente_edit_btn"
+                android:background="@mipmap/ic_edit"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
         </LinearLayout>
     </LinearLayout>
 

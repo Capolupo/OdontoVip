@@ -8,9 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import br.com.pkodontovip.R
 import br.com.pkodontovip.model.Global
 import br.com.pkodontovip.model.Paciente
@@ -21,7 +18,7 @@ import kotlin.coroutines.experimental.coroutineContext
 import android.R.attr.fragment
 import android.support.v4.app.FragmentActivity
 import android.util.Log
-import android.widget.Toast
+import android.widget.*
 
 
 /**
@@ -62,9 +59,8 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
                         .error(R.drawable.cancel)
                         .into(itemView.findViewById<ImageView>(R.id.ivFoto));
             }
-                itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener{v:View ->
+                itemView.findViewById<Button>(R.id.itemPaciente_edit_btn).setOnClickListener(){v:View ->
                     abrirEditar(thisContext, paciente)
-                    true
                 }
         }
 
