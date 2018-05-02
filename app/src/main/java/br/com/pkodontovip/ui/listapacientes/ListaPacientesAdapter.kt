@@ -52,7 +52,7 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
             itemView.findViewById<TextView>(R.id.tvModelo).text = paciente.descricao
             if(paciente.urlImagem.isNullOrEmpty()){
                 itemView.findViewById<ImageView>(R.id.ivFoto).setImageDrawable(
-                        ContextCompat.getDrawable(itemView.context,R.drawable.erroufaustao)
+                        ContextCompat.getDrawable(itemView.context,R.drawable.cancel)
                 )
             }
             else{
@@ -63,20 +63,19 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
                         .into(itemView.findViewById<ImageView>(R.id.ivFoto));
             }
                 itemView.findViewById<LinearLayout>(R.id.item_cliable).setOnLongClickListener{v:View ->
-                    abrirEditar(thisContext)
+                    abrirEditar(thisContext, paciente)
                     true
                 }
         }
 
-        fun abrirEditar(hereContext: Context)
+        fun abrirEditar(hereContext: Context, paciente: Paciente)
         {
-try {
-    (hereContext as FragmentActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.containerFragment, EditPacienteFragment())
-            .commit()
-}catch (e:Exception){
-    Log.e("Error", e.toString())
-}
+            Global.pacienteAtual = paciente
+
+            Global.fragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.containerFragment, EditPacienteFragment())
+                    .commit()
         }
     }
 }

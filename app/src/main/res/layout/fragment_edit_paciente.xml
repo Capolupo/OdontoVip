@@ -17,10 +17,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="3">
-                <view
+                <ImageView
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></view>
+                    android:layout_height="wrap_content"/>
                 <ImageView
                     android:id="@+id/edit_iv"
                     android:layout_weight="1"
@@ -29,13 +29,14 @@
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     />
-                <view
+                <ImageView
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></view>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <EditText
                 android:id="@+id/edit_nome"
+                android:hint="@string/name"
                 android:background="@drawable/bk_edittext_rounded"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
@@ -44,6 +45,7 @@
                 android:layout_height="wrap_content" />
             <EditText
                 android:id="@+id/edit_idade"
+                android:hint="@string/age"
                 android:background="@drawable/bk_edittext_rounded"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
@@ -54,6 +56,7 @@
                 android:maxLength="3"/>
             <EditText
                 android:id="@+id/edit_descricao"
+                android:hint="@string/optional"
                 android:background="@drawable/bk_edittext_rounded"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"

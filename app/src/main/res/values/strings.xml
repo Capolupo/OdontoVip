@@ -23,4 +23,7 @@
     <string name="visit_debugandroid">Visit DebugAndroid</string>
     <string name="sobre">Sobre</string>
     <string name="Sair">Sair</string>
+    <string name="name">Nome</string>
+    <string name="age">idade</string>
+    <string name="optional">descrição</string>
 </resources>

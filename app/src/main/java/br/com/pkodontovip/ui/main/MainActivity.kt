@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sobre.*
 import android.content.Intent
 import android.net.Uri
+import android.provider.Settings
 import android.widget.LinearLayout
+import br.com.pkodontovip.model.Global
 import br.com.pkodontovip.ui.login.LoginActivity
 
 
@@ -66,8 +68,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        Global.fragmentManager = supportFragmentManager
         changeFragment(ListaPacientesFragment())
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
