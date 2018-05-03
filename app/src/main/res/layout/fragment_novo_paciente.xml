@@ -34,7 +34,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Idade do Paciente" />
+                    android:hint="Idade do Paciente"
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -46,8 +47,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Descrição do Paciente"
-                    android:inputType="number" />
+                    android:hint="Descrição do Paciente" />
 
             </android.support.design.widget.TextInputLayout>
 
