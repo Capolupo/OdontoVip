@@ -42,9 +42,9 @@ class NovoPacienteFragment : Fragment() {
                         .getInstance()
                         .create(PacienteAPI::class.java)
                 val paciente = Paciente(null,
-                        inputMarca.editText?.text.toString(),
-                        inputAno.editText?.text.toString().toInt(),
                         inputModelo.editText?.text.toString(),
+                        inputMarca.editText?.text.toString().toInt(),
+                        inputAno.editText?.text.toString(),
                         "")
                 api.salvar(paciente)
                         .enqueue(object : Callback<Void> {
@@ -53,7 +53,7 @@ class NovoPacienteFragment : Fragment() {
                             }
 
                             override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                                Toast.makeText(context, "Erro ao cadastrar paciente!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Paciente " + inputModelo.editText?.text.toString() + " cadastrado com sucesso.", Toast.LENGTH_SHORT).show()
                             }
                         })
             }
