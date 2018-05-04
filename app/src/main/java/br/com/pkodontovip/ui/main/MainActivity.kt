@@ -1,6 +1,7 @@
 package br.com.pkodontovip.ui.main
 
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -15,11 +16,15 @@ import br.com.pkodontovip.ui.novopaciente.NovoPacienteFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sobre.*
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.Settings
+import android.util.Log
 import android.widget.LinearLayout
 import br.com.pkodontovip.model.Global
 import br.com.pkodontovip.ui.login.LoginActivity
+import kotlinx.android.synthetic.main.fragment_edit_paciente.*
+import java.io.FileNotFoundException
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,6 +67,33 @@ class MainActivity : AppCompatActivity() {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.option_menu,menu)
         return true
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.i("Retorno", requestCode.toString() + " " + resultCode.toString())
+        if (resultCode == Activity.RESULT_OK && requestCode == Global.RESULT_LOAD_IMG) {
+            try {
+                val imageUri = data!!.getData()
+                val selectedImage = Global.decodeUri(imageUri, 150, Global.activity)
+                val base64 = Global.encodeToBase64(selectedImage, Bitmap.CompressFormat.JPEG)
+                Global.pacienteAtual.urlImagem = base64
+                System.gc()
+                edit_iv.setImageBitmap(selectedImage)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this, "Erro ao pegar a foto.", Toast.LENGTH_LONG).show()
+            }
+
+        } else if (resultCode == Activity.RESULT_OK && requestCode == Global.REQUEST_IMAGE_CAPTURE) {
+            val extras = data!!.getExtras()
+            val imageBitmap = extras!!.get("data") as Bitmap
+            val base64 = Global.encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG)
+            Global.pacienteAtual.urlImagem = base64
+            System.gc()
+            edit_iv.setImageBitmap(imageBitmap)
+        } else {
+            Toast.makeText(this, "Você não selecionou uma foto.", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

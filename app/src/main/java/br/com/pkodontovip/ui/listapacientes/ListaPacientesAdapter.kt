@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.item_paciente.view.*
 import kotlin.coroutines.experimental.coroutineContext
 import android.R.attr.fragment
+import android.graphics.Bitmap
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.widget.*
@@ -53,11 +54,17 @@ class ListaPacientesAdapter(private val pacientes:List<Paciente>,private val con
                 )
             }
             else{
-                Picasso.get()
-                        .load(paciente.urlImagem)
-                        .placeholder(R.drawable.refresh)
-                        .error(R.drawable.cancel)
-                        .into(itemView.findViewById<ImageView>(R.id.ivFoto));
+                if(paciente.urlImagem!!.contains("http"))
+                    Picasso.get()
+                            .load(paciente.urlImagem)
+                            .placeholder(R.drawable.refresh)
+                            .error(R.drawable.cancel)
+                            .into(itemView.findViewById<ImageView>(R.id.ivFoto))
+                else{
+                    var input :String = paciente.urlImagem.toString()
+                    var bitmap : Bitmap = Global.decodeBase64(input)
+                    itemView.findViewById<ImageView>(R.id.ivFoto).setImageBitmap(bitmap)
+                }
             }
                 itemView.findViewById<Button>(R.id.itemPaciente_edit_btn).setOnClickListener(){v:View ->
                     abrirEditar(thisContext, paciente)

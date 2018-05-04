@@ -78,7 +78,7 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
                     edit_nome?.text.toString(),
                     edit_idade?.text.toString().toInt(),
                     edit_descricao?.text.toString(),
-                    "")
+                    Global.pacienteAtual.urlImagem)
             api.salvar(paciente)
                     .enqueue(object : Callback<Void> {
                         override fun onFailure(call: Call<Void>?, t: Throwable?) {
@@ -95,12 +95,13 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+        Log.i("Retorno", requestCode.toString() + " " + resultCode.toString())
         if (resultCode == Activity.RESULT_OK && requestCode == Global.RESULT_LOAD_IMG) {
             try {
                 val imageUri = data!!.getData()
                 val selectedImage = Global.decodeUri(imageUri, 150, Global.activity)
                 val base64 = Global.encodeToBase64(selectedImage, Bitmap.CompressFormat.JPEG)
+                edit_iv.setImageBitmap(Global.decodeBase64(base64))
                 Global.pacienteAtual.urlImagem = base64
                 System.gc()
                 edit_iv.setImageBitmap(selectedImage)
@@ -112,6 +113,7 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
         } else if (resultCode == Activity.RESULT_OK && requestCode == Global.REQUEST_IMAGE_CAPTURE) {
             val extras = data!!.getExtras()
             val imageBitmap = extras!!.get("data") as Bitmap
+            edit_iv.setImageBitmap(imageBitmap)
             val base64 = Global.encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG)
             Global.pacienteAtual.urlImagem = base64
             System.gc()
@@ -119,7 +121,7 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
         } else {
             Toast.makeText(thisContext, "Você não selecionou uma foto.", Toast.LENGTH_LONG).show()
         }
-        System.gc()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     fun camposVazil():Boolean{
