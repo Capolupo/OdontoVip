@@ -24,6 +24,8 @@
                 android:orientation="horizontal"
                 android:weightSum="3">
 
+
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -42,6 +44,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="Clique na foto para alterar" />
+
 
             <EditText
                 android:id="@+id/edit_nome"

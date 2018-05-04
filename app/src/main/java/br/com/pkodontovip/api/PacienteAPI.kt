@@ -18,7 +18,6 @@ interface PacienteAPI {
     @POST("/paciente")
     fun salvar(@Body paciente: Paciente):Call<Void>
 
-    //DELETE("/beer")
     @HTTP(method = "DELETE", path = "/paciente", hasBody = true)
     fun excluir(@Body paciente : Paciente) : Call<Void>
 }

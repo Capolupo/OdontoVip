@@ -12,4 +12,8 @@
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="optional">Optional</string>
+    <string name="senha">Password</string>
+    <string name="entrar">Enter</string>
+    <string name="manter_conectado">Aways Conected</string>
+    <string name="cadastre_se">Singn in</string>
 </resources>

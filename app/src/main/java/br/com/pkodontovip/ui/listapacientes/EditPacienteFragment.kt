@@ -30,6 +30,7 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
 
     lateinit var thisContext : Context
     lateinit var edit_iv : ImageView
+    var excluir_paciente: Paciente = Paciente("","",0,"", "")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         thisContext = inflater.context
@@ -86,12 +87,67 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
                         }
 
                         override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                            Toast.makeText(thisContext, "Paciente " + edit_nome.text.toString() + " cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(thisContext, "Paciente " + edit_nome.text.toString() + " alterado com sucesso", Toast.LENGTH_SHORT).show()
                             Global.fragmentManager.popBackStack()
                         }
                     })
             }
         }
+
+        //
+        btnDelete.setOnClickListener { v: View ->
+            if (camposVazil()) {
+                Toast.makeText(thisContext, "Preencha todos os campos", Toast.LENGTH_LONG).show()
+            } else {
+                val api = RetrofitClient
+                        .getInstance()
+                        .create(PacienteAPI::class.java)
+                val paciente = Paciente(Global.pacienteAtual.id,
+                        edit_nome?.text.toString(),
+                        edit_idade?.text.toString().toInt(),
+                        edit_descricao?.text.toString(),
+                        Global.pacienteAtual.urlImagem)
+                api.excluir(paciente)
+                        .enqueue(object : Callback<Void> {
+                            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                                Log.e("PACIENTE", t?.message)
+                            }
+
+                            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                                Toast.makeText(thisContext, "Paciente " + edit_nome.text.toString() + " Excluido com sucesso", Toast.LENGTH_SHORT).show()
+                                Global.fragmentManager.popBackStack()
+                            }
+                        })
+            }
+        }
+        /*
+        btnDelete.setOnClickListener{
+            val api = RetrofitClient.getInstance().create(PacienteAPI::class.java)
+            var mainContext = context as MainActivity
+
+            val excluir_paciente = Paciente(Global.pacienteAtual.id,
+                    edit_nome?.text.toString(),
+                    edit_idade?.text.toString().toInt(),
+                    edit_descricao?.text.toString(),
+                    Global.pacienteAtual.urlImagem)
+
+            api.excluir(excluir_paciente).enqueue(object : Callback<Void>{
+                override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                    Toast.makeText(context, t?.message+"sucesso", Toast.LENGTH_SHORT).show()
+                }
+                override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                    if(response?.isSuccessful == true){
+                        // back to the list
+                        mainContext.changeFragment(ListaPacientesFragment())
+                    } else {
+                        Toast.makeText(context, response?.message()+"falha ao excluir", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }
+        */
+        //
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

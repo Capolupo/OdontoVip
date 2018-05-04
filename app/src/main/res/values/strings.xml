@@ -26,4 +26,8 @@
     <string name="name">Nome</string>
     <string name="age">idade</string>
     <string name="optional">descrição</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="manter_conectado">Manter Conectado</string>
+    <string name="cadastre_se">Cadastre-se</string>
 </resources>
