@@ -1,6 +1,9 @@
 package br.com.pkodontovip.ui.listapacientes
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
@@ -15,11 +18,13 @@ import br.com.pkodontovip.api.PacienteAPI
 import br.com.pkodontovip.api.RetrofitClient
 import br.com.pkodontovip.model.Global
 import br.com.pkodontovip.model.Paciente
+import br.com.pkodontovip.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_edit_paciente.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.FileNotFoundException
 
 class EditPacienteFragment : android.support.v4.app.Fragment() {
 
@@ -41,12 +46,20 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
             )
         }
         else{
-            Picasso.get()
-                    .load(Global.pacienteAtual.urlImagem)
-                    .placeholder(R.drawable.refresh)
-                    .error(R.drawable.cancel)
-                    .into(edit_iv);
+            if(Global.pacienteAtual.urlImagem!!.contains("http"))
+                Picasso.get()
+                        .load(Global.pacienteAtual.urlImagem)
+                        .placeholder(R.drawable.refresh)
+                        .error(R.drawable.cancel)
+                        .into(edit_iv);
+            else{
+                var input :String = Global.pacienteAtual.urlImagem.toString()
+                var bitmap : Bitmap = Global.decodeBase64(input)
+                edit_iv.setImageBitmap(bitmap)
+            }
         }
+        edit_iv.setOnClickListener { v: View? ->  Global.OpenDialog(Global.activity)}
+
         if (!Global.pacienteAtual.nome.isNullOrEmpty())
             edit_nome.setText(Global.pacienteAtual.nome)
         if (!Global.pacienteAtual.idade.toString().isNullOrEmpty())
@@ -79,6 +92,34 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
                     })
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == Global.RESULT_LOAD_IMG) {
+            try {
+                val imageUri = data!!.getData()
+                val selectedImage = Global.decodeUri(imageUri, 150, Global.activity)
+                val base64 = Global.encodeToBase64(selectedImage, Bitmap.CompressFormat.JPEG)
+                Global.pacienteAtual.urlImagem = base64
+                System.gc()
+                edit_iv.setImageBitmap(selectedImage)
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+                Toast.makeText(thisContext, "Erro ao pegar a foto.", Toast.LENGTH_LONG).show()
+            }
+
+        } else if (resultCode == Activity.RESULT_OK && requestCode == Global.REQUEST_IMAGE_CAPTURE) {
+            val extras = data!!.getExtras()
+            val imageBitmap = extras!!.get("data") as Bitmap
+            val base64 = Global.encodeToBase64(imageBitmap, Bitmap.CompressFormat.JPEG)
+            Global.pacienteAtual.urlImagem = base64
+            System.gc()
+            edit_iv.setImageBitmap(imageBitmap)
+        } else {
+            Toast.makeText(thisContext, "Você não selecionou uma foto.", Toast.LENGTH_LONG).show()
+        }
+        System.gc()
     }
 
     fun camposVazil():Boolean{
