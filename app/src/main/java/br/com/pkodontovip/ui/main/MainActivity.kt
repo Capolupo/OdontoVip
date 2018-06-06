@@ -128,4 +128,9 @@ class MainActivity : AppCompatActivity() {
 //        dialog.show()
         return true
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        Global.backFuncition()
+    }
 }

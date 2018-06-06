@@ -41,6 +41,20 @@ class Global {
         lateinit var fragmentManager: FragmentManager
         lateinit var activity: Activity
 
+        fun backFuncition(){
+            if(fragmentManager.backStackEntryCount > 1)
+                fragmentManager.popBackStack()
+            else{
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle("Deseja sair do OdontoVip?")
+                builder.setPositiveButton("Sim",
+                        DialogInterface.OnClickListener { dialog, which ->  activity.finish()})
+                builder.setNegativeButton("Não",
+                        DialogInterface.OnClickListener { dialog, which ->  })
+                builder.show()
+            }
+        }
+
         fun configurarFirebase(){
             database = FirebaseDatabase.getInstance("https://odontovip-4bce7.firebaseio.com/")
             clinicaRef = database.getReference("Clinica")
