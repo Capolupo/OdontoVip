@@ -22,6 +22,7 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.LinearLayout
 import br.com.pkodontovip.model.Global
+import br.com.pkodontovip.model.PagerClienteAdapter
 import br.com.pkodontovip.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_edit_paciente.*
 import java.io.FileNotFoundException
@@ -102,7 +103,12 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         Global.fragmentManager = supportFragmentManager
         Global.activity = this
-        changeFragment(ListaPacientesFragment())
+//        changeFragment(ListaPacientesFragment())
+
+        val alphabets = listOf("a","b","c","d","e","f")
+        val adapter = PagerClienteAdapter(alphabets)
+        containerFragment.adapter = adapter
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
