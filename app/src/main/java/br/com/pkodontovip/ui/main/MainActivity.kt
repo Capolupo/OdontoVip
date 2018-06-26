@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         Global.activity = this
 //        changeFragment(ListaPacientesFragment())
 
-        val alphabets = listOf("a","b","c","d","e","f")
+        val alphabets = listOf("Domingo","Segunda","Terça","Quarta","Quinta","Sexta", "Sábado")
         val adapter = PagerClienteAdapter(alphabets)
         containerFragment.adapter = adapter
 

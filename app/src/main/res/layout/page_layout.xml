@@ -10,7 +10,14 @@
         android:id="@+id/tv_lower"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="200sp"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:fontFamily="sans-serif"
+        />
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textStyle="bold|italic"
         android:gravity="center"
         android:fontFamily="sans-serif"
