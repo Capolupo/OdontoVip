@@ -30,7 +30,7 @@ class EditPacienteFragment : android.support.v4.app.Fragment() {
 
     lateinit var thisContext : Context
     lateinit var edit_iv : ImageView
-    var excluir_paciente: Paciente = Paciente("","",0,"", "")
+    //var excluir_paciente: Paciente = Paciente("","",0,"", "")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         thisContext = inflater.context
